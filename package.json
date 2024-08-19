@@ -1,0 +1,51 @@
+{
+  "name": "@sombra-ui/vue",
+  "private": false,
+  "version": "1.0.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Sombra-Digital/Sombra-UI.git"
+  },
+  "type": "module",
+  "main": "./dist/sombra-ui.umd.cjs",
+  "module": "./dist/sombra-ui.js",
+  "exports": {
+    ".": {
+      "import": "./dist/sombra-ui.js",
+      "require": "./dist/sombra-ui.umd.cjs"
+    },
+    "./dist/style.css": "./dist/style.css"
+  },
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "publishConfig": {
+    "@Sombra-Digital:registry": "https://npm.pkg.github.com"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "vue-tsc && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "vue": "^3.0.0"
+  },
+  "peerDependencies": {
+    "vue": "^3.0.0"
+  },
+  "devDependencies": {
+    "@iconify/tailwind": "^1.1.2",
+    "@types/node": "^22.4.1",
+    "@vitejs/plugin-vue": "^5.1.2",
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.4.41",
+    "sass-embedded": "^1.77.8",
+    "tailwindcss": "^3.4.10",
+    "typescript": "^5.5.3",
+    "vite": "^5.4.1",
+    "vite-plugin-css-injected-by-js": "^3.5.1",
+    "vite-plugin-dts": "^4.0.3",
+    "vue-tsc": "^2.0.29"
+  }
+}

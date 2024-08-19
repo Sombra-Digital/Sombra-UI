@@ -1,0 +1,50 @@
+name: Build and Publish NPM Package
+
+on:
+  workflow_dispatch:
+  release:
+    types: [created, edited]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - uses: npm/npm-install@v1
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Lib Build
+        run: npm run build
+
+      - name: Save build artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: dist
+          path: ./packages/sombra-ui/dist
+
+  publish-npm:
+    runs-on: ubuntu-latest
+    permissions:
+      packages: write
+    needs: build
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          registry-url: https://npm.pkg.github.com
+      - name: Download build artifacts
+        uses: actions/download-artifact@v2
+        with:
+          name: dist
+          path: ./packages/sombra-ui/dist
+      - run: npm publish --no-git-checks --registry=https://npm.pkg.github.com
+        working-directory: ./packages/sombra-ui/dist
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
