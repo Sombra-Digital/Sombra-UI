@@ -14,8 +14,7 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 18
-      - uses: npm/npm-install@v1
-
+          
       - name: Install Dependencies
         run: npm install
 
