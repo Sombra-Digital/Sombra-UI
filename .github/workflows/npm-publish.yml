@@ -44,6 +44,6 @@ jobs:
           name: dist
           path: ./dist
       - run: npm publish --no-git-checks --registry=https://npm.pkg.github.com
-        working-directory: ./packages/sombra-ui/dist
+        working-directory: ./dist
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
